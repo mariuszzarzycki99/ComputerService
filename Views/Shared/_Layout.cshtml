@@ -26,6 +26,9 @@
     <link rel="icon" href="~/graphics/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 </head>
 
 <body style="background-color : rgb(221,223,225)">
@@ -63,6 +66,10 @@
                             <a class="nav-link" asp-area="" asp-controller="PriceList" asp-action="Preview"> Prices </a>
                         </li>
                     }
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Location"> Find us! </a>
+                        </li>
 
 
 @*                    @if (false)

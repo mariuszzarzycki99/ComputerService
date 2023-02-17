@@ -48,6 +48,12 @@ namespace TabApp.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public IActionResult Location()
+        {
+            return View();
+        }
+
         [HttpPost]
         [AllowAnonymous]
         public IActionResult PickupCodes(string Code)

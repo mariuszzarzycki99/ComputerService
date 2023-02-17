@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Location";
+}
+
+<div class="text-center">
+    <h3 class="display-4">Find our store!</h3>
+    <h5>You can find our store at:</h5>
+
+    <div id="map" style="height: 700px;">
+	</div>
+	<script>
+		var markers = [];
+		const map = L.map('map').setView([50.285773104954366, 18.68610576373447], 17);
+
+		const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 19,
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+		}).addTo(map);
+		
+        var marker = L.marker([50.285773104954366, 18.68610576373447]).addTo(map);
+	</script>
+</div>
