@@ -1,5 +1,14 @@
 # ComputerServiceOIRPOS
 
+# Uruchomienie
+
+Do kodu dołączona jest solucja którą można zaimportować w programie Visual Studio.
+Aplikacje można również uruchomić komendą:
+
+dotnet run
+
+uruchomioną w wierszu poleceń, znajdując się w folderze z plikami źródłowymi
+
 # Analiza
 
 Aplikacja umożliwia rejestracje oraz logowanie poszczególnych użytkowników. Dostępne są następujące role:
