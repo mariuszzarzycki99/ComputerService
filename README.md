@@ -37,10 +37,15 @@ Admin - Możliwość dostępu do wszystkich funkcji programu oraz modyfikowania 
 W projekcie skorzystano z następujących technologii:
 
 Entity framework
+
 Baza danych SQLite
+
 MVC
+
 Autentykacja/Autoryzacja
+
 Programowanie asynchroniczne
+
 
 # Specyfikacja zewnętrzna
 Aplikacja roboczo jest hostowana na komputerze lokalnym. Po wpisaniu w pasek przeglądarki adresu https://localhost:45443 ukazuje nam się strona główna:
