@@ -1,0 +1,43 @@
+@model IEnumerable<TabApp.Models.Message>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="color:red;">DO NOT DELETE - TEMPLATE</h1>
+
+<h2>All users message history</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table" style="table-layout: fixed; width:100%;">
+    <thead>
+        <tr>
+            <th style="width:100px;">
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th style="width: 200px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td style="width:auto;">
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td style="word-wrap: break-word; width:auto;">
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td style="width:auto;">
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

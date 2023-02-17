@@ -1,0 +1,33 @@
+@model TabApp.Models.Repair
+
+@{
+    ViewData["Title"] = "New Repair";
+}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="text-center">
+				Choose:
+			</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			 
+			<button type="button" class="btn btn-success btn-block btn-lg">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Item" asp-action="Index">Add repair to existing item</a>				
+			</button>
+		</div>
+		<div class="col-md-6">
+			 
+			<button type="button" class="btn btn-success btn-lg btn-block">
+				<a class="nav-link text-dark" asp-area="" asp-controller="Item" asp-action="Create">Add repair to new item</a>	
+			</button>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

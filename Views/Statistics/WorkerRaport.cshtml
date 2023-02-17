@@ -1,0 +1,39 @@
+@model List<KeyValuePair<Person, int>>
+
+    @{
+    ViewData["Title"] = "Raport";
+    }
+
+    <h2>Workers raport</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Person name
+                </th>
+                <th>
+                    Person surname
+                </th>
+                <th>
+                    Services done
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var worker in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelMessage => worker.Key.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelMessage => worker.Key.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelMessage => worker.Value)
+                </td>
+            </tr>
+}
+        </tbody>
+    </table>

@@ -1,0 +1,38 @@
+@model IEnumerable<TabApp.Models.Invoice>
+
+@{
+    ViewData["Title"] = "Invoices history";
+}
+
+<h2>Invoices history</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NIP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NIP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceDate)
+            </td>
+            <td>
+                
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

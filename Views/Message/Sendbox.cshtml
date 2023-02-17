@@ -1,0 +1,65 @@
+@model IEnumerable<TabApp.Models.Message>
+
+    @{
+    ViewData["Title"] = "Outbox";
+    }
+
+    <h2>Sent by me</h2>
+
+    <p>
+        <a asp-action="Create" class="btn btn-outline-primary my-2 my-sm-0" style="padding-right:15px;">Send message</a>
+        <a asp-action="SendToWorker" class="btn btn-outline-primary my-2 my-sm-0" style="padding-right:15px;">Contact Support</a>
+        <a asp-action="Mailbox" class="btn btn-outline-danger my-2 my-sm-0">Back to Mailbox</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    To
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <form asp-controller="Message" asp-action="Sendbox">
+                <th>
+                    <input type=text name="FromFilter" value="@ViewBag.FromFilter">
+                </th>
+                <th>
+                    <input type=text name="TitleFilter" value="@ViewBag.TitleFilter">
+                </th>
+                <th>
+                </th>
+                <th>
+                    <button type="submit" class="btn btn-outline-primary my-2 my-sm-0"> Filter </button>
+                </th>
+                </form>
+            </tr>
+            @foreach (var message in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelMessage => message.Addressee.LoginCredentials.UserName)
+                </td>
+                <td>
+                    <a asp-action="ShowSentMessage" asp-route-id="@message.ID">@Html.DisplayFor(modelMessage => message.Title)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelMessage => message.Date)
+                </td>
+                <td>
+                </td>
+            </tr>
+}
+        </tbody>
+    </table>

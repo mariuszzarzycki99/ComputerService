@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+@{
+    bool isAdmin = User.Claims.Any(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role" && c.Value
+            == "Admin");
+
+    bool isUser = User.Claims.Any(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role" && c.Value
+    == "User");
+
+    bool isEmployee = User.Claims.Any(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role" &&
+    c.Value == "Employee");
+
+    bool isManager = User.Claims.Any(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role" &&
+    c.Value == "Manager");
+
+    bool isSupport = User.Claims.Any(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role" &&
+    c.Value == "Support");
+
+    //bool none = false;
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="icon" href="~/graphics/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body style="background-color : rgb(221,223,225)">
+    <header>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" style="padding-left:5%; padding-right:5%;">
+
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="font-weight:bold;">
+                <img src="~/graphics/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Logo" />
+                Home
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Services"> Services </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="PickupCodes"> Pickup codes
+                            </a>
+                        </li>
+                    }
+
+                    @if (!isAdmin && !isManager)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="PriceList" asp-action="Preview"> Prices </a>
+                        </li>
+                    }
+
+
+@*                    @if (false)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Persons
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Person" asp-action="Create"> Add Person
+                                </a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Person" asp-action="Index"> Person list
+                                </a>
+                            </div>
+                        </li>
+                    }*@
+
+                    @if (isManager || isAdmin)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Workers
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Worker" asp-action="Register"> Register
+                                    worker </a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Worker" asp-action="Index"> Workers
+                                    list </a>
+                            </div>
+                        </li>
+                    }
+
+                    @if (isEmployee || isManager || isSupport || isAdmin)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Items
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Item" asp-action="Create"> Add Item
+                                </a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Item" asp-action="Index"> Item list
+                                </a>
+                            </div>
+                        </li>
+                    }
+
+                    @if (isEmployee || isManager || isSupport || isAdmin)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Repairs
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Repair" asp-action="Add"> Add Repair
+                                </a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Repair" asp-action="Index"> Repairs
+                                    list </a>
+                            </div>
+                        </li>
+                    }
+
+                    @if (isManager || isAdmin)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Price list
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="PriceList" asp-action="Create"> Add
+                                    Price </a>
+                                <a class="dropdown-item" asp-area="" asp-controller="PriceList" asp-action="Index"> Price
+                                    list </a>
+                            </div>
+                        </li>
+                    }
+
+@*                    @if (false)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Services
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Service" asp-action="Create"> Add
+                                    Service </a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Service" asp-action="Index"> Services
+                                    list </a>
+                            </div>
+                        </li>
+                    }*@
+
+                    @if (isManager || isAdmin)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-item nav-link" asp-area="" asp-controller="Invoice" asp-action="Index"> Invoices
+                                history <span class="sr-only">(current)</span></a>
+                        </li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-item nav-link" asp-area="" asp-controller="Home" asp-action="Profile"> My profile
+                                <span class="sr-only">(current)</span></a>
+                        </li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-item nav-link" asp-area="" asp-controller="UserRepairs" asp-action="Index"> My
+                                repairs <span class="sr-only">(current)</span></a>
+                        </li>
+                    }
+
+                    @if (isAdmin || isManager)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-item nav-link" asp-area="" asp-controller="Statistics" asp-action="Index">
+                                Statistics <span class="sr-only">(current)</span></a>
+                        </li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-item nav-link" asp-area="" asp-controller="Message" asp-action="Mailbox"> Mailbox
+                                <span class="sr-only">(current)</span></a>
+                        </li>
+                    }
+
+                    @if (isAdmin)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-item nav-link" asp-area="" asp-controller="LoginCredentials" asp-action="Index">
+                                Manage Users <span class="sr-only">(current)</span></a>
+                        </li>
+                    }
+
+                </ul>
+
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a class="btn btn-outline-success my-2 my-sm-0" asp-area="" asp-controller="Home" asp-action="Login">
+                        Login </a>
+                }
+                else
+                {
+                    <div class="nav-item" style="color:rgb(154, 157, 160); padding-right:15px;">
+                        Logged as
+                        <span style="font-weight:bold; color:white;">@User.Identity.Name</span>
+                    </div>
+                    <a class="btn btn-outline-success my-2 my-sm-0" asp-area="" asp-controller="Home" asp-action="Logout">
+                        Logout </a>
+                }
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container"
+        style="background-color: white; padding: 20px 30px 30px; margin-top: 15px; box-shadow: 0 8px 6px -6px black;">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted d-print-none">
+        <div class="container">
+            &copy; 2023 - ComputerService - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+            asp-fallback-src="~/lib/jquery/dist/jquery.min.js" asp-fallback-test="window.jQuery" crossorigin="anonymous"
+            integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+            </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal" crossorigin="anonymous"
+            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+            </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+
+</body>
+
+</html>

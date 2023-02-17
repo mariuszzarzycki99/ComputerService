@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+    var id = ViewData["ID"];
+}
+<h2>Edit user role</h2>
+<div class="form-group">
+    <label> Select role for user</label>
+    <form id="form" name="form" method="post">
+        <div class="col-md-6">
+            <input type="hidden" name="id" value=@id />
+            
+            <select name="role" id="role" class="form-control">
+                @foreach (var element in @ViewBag.Roles)
+                {
+                    <option value=@element>@element </option>
+                }
+            </select>
+            <br />
+            <p>
+                <input type="submit" asp-controller="LoginCredentials" asp-action="ChangeRoleConfirm" value="Confirm" class="btn btn-outline-success">
+            </p>
+        </div>
+    </form>
+</div>

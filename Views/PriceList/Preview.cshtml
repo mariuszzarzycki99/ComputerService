@@ -1,0 +1,32 @@
+@model IEnumerable<TabApp.Models.PriceList>
+
+@{
+    ViewData["Title"] = "Prices preview";
+}
+
+<h3>Check our prices!</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

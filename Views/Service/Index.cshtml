@@ -1,0 +1,65 @@
+@model IEnumerable<TabApp.Models.Service>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Services for repair @ViewBag.PickupCode </h1>
+
+<p>
+    <a asp-action="Create" asp-route-repairID="@ViewBag.RepairID">Add service</a>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WarrantyDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceList.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceList.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WarrantyDate)
+            </td>
+            <td>
+                @{
+                    int fullPrice;
+                    if(item.PartsCost != null)
+                    {
+                        fullPrice = item.PriceList.Price + (int)item.PartsCost;
+                    }
+                    else
+                    {
+                        fullPrice = item.PriceList.Price;
+                    }
+                    @Html.DisplayFor(modelItem => fullPrice);
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceList.Description)
+
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID" asp-route-repairID="@ViewBag.RepairID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID" asp-route-repairID="@ViewBag.RepairID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID" asp-route-repairID="@ViewBag.RepairID">Delete</a>    
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="Repair" asp-action="Index"> Back </a>
+</div>	

@@ -1,0 +1,60 @@
+@model IEnumerable<TabApp.Models.Repair>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Repairs</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AdmissionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IssueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RepairStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PickupCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdmissionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IssueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RepairStatus.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PickupCode.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item.Description)
+            </td>
+            <td>
+                <a asp-action="UserServices" asp-route-repairID="@item.ID">Show services</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

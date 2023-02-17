@@ -1,0 +1,64 @@
+@model TabApp.Models.Person
+
+@{ 
+    ViewData["Title"] = "EditProfile";
+    var role = ViewData["Role"] as string;
+    var error = TempData["Error"] as string;
+}
+
+<h1>Edit</h1>
+
+<h4>Profile</h4>
+<hr />
+<div id="loginErrorCode">
+    @if(!string.IsNullOrEmpty(error)) {
+    <h4 class="alert-danger" style="padding:20px; text-align:center;">@error</h4>
+    }
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditProfile" autocomplete="off" method="POST">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <input asp-for="Role" type="hidden" value=@role class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-outline-success my-2 my-sm-0" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Profile">Back</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

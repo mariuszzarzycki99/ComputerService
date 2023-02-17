@@ -1,0 +1,35 @@
+@model TabApp.Models.Message
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Contact Support</h2>
+<hr />
+
+<div class="row">
+    <div class="col-lg-6">
+        <form asp-action="SendToWorker">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <textarea asp-for="Content" class="form-control" rows="5" cols="50" maxlength="254"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Send Message" class="btn btn-outline-success" style="margin-right:10px;" />
+                <a asp-action="Mailbox" class="btn btn-outline-danger">Back to Mailbox</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

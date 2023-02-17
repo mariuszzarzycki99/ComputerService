@@ -1,0 +1,149 @@
+@model TabApp.Models.Repair
+
+@{
+    ViewData["Title"] = "Generate";
+    var nip = ViewData["NIP"] as string;
+    var date = ViewData["InvoiceDate"] as string;
+}
+
+<div id="container" style="margin: 0mm;">
+
+    <table>
+        <tr>
+            <td>
+                <div id="logo">
+                    <img src="~/graphics/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Logo" style="float:left; margin-right:10px;" />
+                    <h3 style="float:left; margin-right:20px;">Invoice no. @Html.DisplayFor(model => model.ID)</h3>
+                    <button class="btn btn-outline-success my-2 my-sm-0 d-print-none text-right" style="float:right;" onclick="window.print();return false;">
+                        Print
+                    </button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="place" style="clear:both;">
+                    <table>
+                        <tr>
+                            <th> Issue date </th>
+                            <td> @date</td>
+                        </tr>
+                        <tr>
+                            <th> Issue place </th>
+                            <td> Gliwice </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <hr />
+
+    <div id="issuer" style="width: 50%; float:left; margin-bottom:25px;">
+        <h5>Issuer</h5>
+        <table>
+            <tr>
+                <td> Name : Tworzenie Aplikacji Bazodanowych </td>
+            </tr>
+            <tr>
+                <td> Address : Mariusza Zarzyckiego 6/9, 48-130 Kietrz </td>
+            </tr>
+            <tr>
+                <td> NIP : 0123456789 </td>
+            </tr>
+            <tr>
+                <td> Phone : 987654321 </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="receiver" style="width: 50%; float:right; ">
+        <h5>Receiver</h5>
+        <table>
+            <tr>
+                <td> Name : @Html.DisplayFor(model => model.Item.Person.Name) </td>
+            </tr>
+            <tr>
+                <td> Address :  @Html.DisplayFor(model => model.Item.Person.Address) </td>
+            </tr>
+            <tr>
+                <td> NIP : @nip </td>
+            </tr>
+            <tr>
+                <td> Phone : @Html.DisplayFor(model => model.Item.Person.PhoneNumber) </td>
+            </tr>
+        </table>
+    </div>
+
+    <br />
+
+    <div id="services" style="margin-top:25px; clear:both;">
+        <table style="width:100%;">
+            <tr style="text-decoration:underline;">
+                <th>No.</th>
+                <th>Name </th>
+                <th>Price</th>
+            </tr>
+
+            @{
+            foreach (var item in Model.Service.Select((value, i) => new { i, value }))
+            {
+                var service = item.value;
+                var index = item.i + 1;
+                <tr>
+                    <td>@index</td>
+                    <td>@service.PriceList.Description</td>
+                    
+                    @{
+                    int fullPrice;
+                    if(service.PartsCost != null)
+                    {
+                        fullPrice = service.PriceList.Price + (int)service.PartsCost;
+                    }
+                    else
+                    {
+                        fullPrice = service.PriceList.Price;
+                    }
+                    <td>@fullPrice</td>
+                    }
+
+                </tr>
+
+            }
+            }
+
+        </table>
+    </div>
+
+    <div>Final price : @Html.DisplayFor(model => model.Cost)</div>
+
+   
+
+    <div id="signatures" style="margin-top:300px;">
+        <div id="sign1" style="width:50%; float:left;">
+            <table style="width:90%;">
+                <tr style="border-bottom-style: solid;" ">
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>the signature of the issuer</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="sign2" style="width:50%; float:right;">
+            <table style="width:90%;">
+                <tr style="border-bottom-style: solid;">
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>signature of the receiver</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+

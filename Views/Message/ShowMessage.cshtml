@@ -1,0 +1,38 @@
+@model IEnumerable<TabApp.Models.Message>
+
+    <div class="container">
+        @{
+            ViewData["Title"] = "Mailbox";
+        }
+
+        @foreach (var message in Model) {
+
+        <h3>@Html.DisplayFor(modelMessage => message.Title)</h3>
+
+        <table class="table" style="width:40%;">
+            <tr>
+                <th>From</th>
+                <td>@Html.DisplayFor(modelMessage => message.Sender.LoginCredentials.UserName)</td>
+            </tr>
+            <tr>
+                <th>Received</th>
+                <td>@Html.DisplayFor(modelMessage => message.Date)</td>
+            </tr>
+        </table>
+
+        <hr />
+
+        <div id="messageContent">
+            @Html.DisplayFor(modelMessage => message.Content)
+        </div>
+
+        <hr />
+
+        <a class="btn btn-outline-primary my-2 my-sm-0" style="padding-right:25px;" asp-action="Reply" asp-route-id="@message.ID"> Reply </a>
+        <a class="btn btn-outline-danger" style="padding-right:25px;" asp-action="Delete" asp-route-id="@message.ID">Delete</a>
+        <a class="btn btn-outline-success my-2 my-sm-0" style="float:right;" asp-action="Mailbox"> Back to mailbox </a>
+    }
+    </div>
+
+
+

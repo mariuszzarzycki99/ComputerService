@@ -1,0 +1,30 @@
+@model IEnumerable<TabApp.Models.Service>
+
+@{
+    ViewData["Title"] = "Services preview";
+}
+
+<h3>Check our services!</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WarrantyDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WarrantyDate)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

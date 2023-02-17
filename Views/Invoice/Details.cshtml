@@ -1,0 +1,31 @@
+@model TabApp.Models.Invoice
+
+@{
+    ViewData["Title"] = "Details";
+    var id = ViewData["ID"];
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Invoice</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NIP)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NIP)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InvoiceDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InvoiceDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index"> Back to List </a>  
+    <a asp-controller="Invoice" asp-action="Create" asp-route-repairID="@id"> | Generate</a>
+</div>

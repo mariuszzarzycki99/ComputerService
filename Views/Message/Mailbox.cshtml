@@ -1,0 +1,67 @@
+@model IEnumerable<TabApp.Models.Message>
+
+    @{
+    ViewData["Title"] = "Mailbox";
+    }
+
+    <h2>Mailbox</h2>
+
+    <p>
+        <a asp-action="Create" class="btn btn-outline-primary my-2 my-sm-0" style="padding-right:15px;">Send message</a>
+        <a asp-action="SendToWorker" class="btn btn-outline-primary my-2 my-sm-0" style="padding-right:15px;">Contact Support</a>
+        <a asp-action="SendBox" class="btn btn-outline-success my-2 my-sm-0">Sent by me</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    From
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    <!-- options column, no label -->
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <form asp-controller="Message" asp-action="Mailbox">
+                <th>
+                    <input type=text name="FromFilter" value="@ViewBag.FromFilter">
+                </th>
+                <th>
+                    <input type=text name="TitleFilter" value="@ViewBag.TitleFilter">
+                </th>   
+                <th>
+                </th>
+                <th>
+                    <button type="submit" class="btn btn-outline-primary my-2 my-sm-0"> Filter </button>
+                </th>
+                </form>
+            </tr>
+            @foreach (var message in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelMessage => message.Sender.LoginCredentials.UserName)
+                </td>
+                <td>
+                    <a asp-action="ShowMessage" asp-route-id="@message.ID">@Html.DisplayFor(modelMessage => message.Title)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelMessage => message.Date)
+                </td>
+                <td>
+                    <a asp-action="Reply" asp-route-id="@message.ID">Reply</a> |
+                    <a asp-action="Delete" asp-route-id="@message.ID">Delete</a>
+                </td>
+            </tr>
+}
+        </tbody>
+    </table>

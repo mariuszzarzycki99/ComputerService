@@ -1,0 +1,58 @@
+@model IEnumerable<TabApp.Models.Service>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Services for repair @ViewBag.PickupCode </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WarrantyDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceList.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceList.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WarrantyDate)
+            </td>
+            <td>
+                @{
+                    int fullPrice;
+                    if(item.PartsCost != null)
+                    {
+                        fullPrice = item.PriceList.Price + (int)item.PartsCost;
+                    }
+                    else
+                    {
+                        fullPrice = item.PriceList.Price;
+                    }
+                    @Html.DisplayFor(modelItem => fullPrice)
+                } zł
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceList.Description)
+
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ID" asp-route-repairID="@ViewBag.RepairID">Details</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="UserRepairs" asp-action="Index" class="btn btn-outline-danger my-2 my-sm-0"> Back </a>
+</div>	

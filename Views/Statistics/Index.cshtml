@@ -1,0 +1,29 @@
+@model IEnumerable<TabApp.Models.Service>
+
+@{
+    ViewData["Title"] = "New Repair";
+}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="text-center">
+				Choose:
+			</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			 
+			<button type="button" class="btn btn-success btn-block btn-lg">
+                <a class="nav-link text-dark" asp-action="WorkerRaport">Workers raport</a>				
+			</button>
+		</div>
+		<div class="col-md-6">
+			 
+			<button type="button" class="btn btn-success btn-lg btn-block">
+				<a class="nav-link text-dark" asp-action="RepairRaport">Repairs raport</a>	
+			</button>
+		</div>
+	</div>
+</div>

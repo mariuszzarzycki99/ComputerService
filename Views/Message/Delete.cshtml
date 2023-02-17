@@ -1,0 +1,16 @@
+@model TabApp.Models.Message
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to this mail?</h3>
+<div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Mailbox">Back to List</a>
+    </form>
+</div>

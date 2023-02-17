@@ -1,0 +1,33 @@
+@model TabApp.Models.Item
+
+@{
+    ViewData["Title"] = "Add new item";
+}
+
+<h2>Add new item</h2>
+<div class="row">
+    <div class="col-md-6">
+        <form>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SerialNumber" class="control-label"></label>
+                <input asp-for="SerialNumber" class="form-control" />
+                <span asp-validation-for="SerialNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-action="AddNewPerson" type="submit" value="Add with new person" class="btn btn-outline-primary" />
+                <input asp-action="SelectOwner" type="submit" value="Add to existing person" class="btn btn-outline-primary" />
+                <a asp-action="Index" class="btn btn-outline-danger">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

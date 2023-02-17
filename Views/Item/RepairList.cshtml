@@ -1,0 +1,45 @@
+@model IEnumerable<TabApp.Models.Repair>
+
+@{
+    ViewData["Title"] = "RepairList";
+}
+
+<h2>RepairList</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Admission Date
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Pickup Code
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var repair in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => repair.AdmissionDate)
+            </td>
+                        <td>
+                @Html.DisplayFor(modelItem => repair.RepairStatus.Status)
+            </td>
+                        <td>
+                @Html.DisplayFor(modelItem => repair.PickupCode.Value)
+            </td>
+
+            <td>
+                <a asp-controller="Repair" asp-action="Edit" asp-route-id="@repair.ID">Edit</a> |
+                <a asp-controller="Repair" asp-action="Details" asp-route-id="@repair.ID">Details</a> |
+                <a asp-controller="Repair" asp-action="Delete" asp-route-id="@repair.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

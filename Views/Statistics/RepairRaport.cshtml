@@ -1,0 +1,33 @@
+@model List<KeyValuePair<PriceList, int>>
+
+    @{
+    ViewData["Title"] = "Raport";
+    }
+
+    <h2>Workers raport</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Service
+                </th>
+                <th>
+                    Services done
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var serviceList in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelMessage => serviceList.Key.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelMessage => serviceList.Value)
+                </td>
+            </tr>
+}
+        </tbody>
+    </table>

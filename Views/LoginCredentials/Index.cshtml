@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TabApp.Models.LoginCredentials>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Users</h1>
+<tr>
+    <form asp-controller="LoginCredentials" asp-action="Index">
+    <th>
+        <input type=text name="loginFilter" value="@ViewBag.LoginFilter" placeholder="Login">
+    </th>
+
+    <th>
+    </th>
+    <th>
+        <button type="submit" class="btn btn-outline-primary my-2 my-sm-0"> Filter </button>
+    </th>
+    </form>
+</tr>
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.Role)
+            </th>
+            <th></th>
+        </tr>
+        
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.Role)
+            </td>
+            <td>
+                <a asp-action="ChangeRole" asp-route-id="@item.ID">Change role</a>
+                <a asp-action="Delete" asp-route-id="@item.ID"> | Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
