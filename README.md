@@ -96,29 +96,44 @@ Wybór osoby z listy zarejestrowanych
 
 
 Aby rozpocząć naprawe pracownik musi skojarzyć naprawę z przedmiotem:
+![image](https://user-images.githubusercontent.com/43991762/219814173-6c003546-327e-4f88-8fbd-98a0dcea0114.png)
+
 
 Wybór przedmiotu z listy:
+![image](https://user-images.githubusercontent.com/43991762/219814205-45365ca0-c9c9-496a-8d2d-c576efba8e84.png)
+
 Wybór daty przyjęcia do naprawy oraz pole informujące czy naprawa jest gwarancyjna:
+![image](https://user-images.githubusercontent.com/43991762/219814218-86572d1a-b36a-491f-82e2-ff4a5505919c.png)
 
 Lista uslug wykonanych w ramach naprawy, pracaownik ma możliwość dodania kolejnych usług:
+![image](https://user-images.githubusercontent.com/43991762/219814238-7c229720-0b53-4ab8-859f-bcb81cc056c6.png)
+
 Dodawanie kolejnej usługi do naprawy:
+![image](https://user-images.githubusercontent.com/43991762/219814260-f46ec606-9bed-4eb9-a501-4f23ec00342f.png)
 
 
 Dla konta menedżera poza opcjami pracownika dostępne są dodatkowo możliwości:
+![image](https://user-images.githubusercontent.com/43991762/219814278-e08cd935-f644-4d4c-865c-2caae8420504.png)
+
 
 Wykaz statystyk dot. pracy serwisu:
-
-
-
+![image](https://user-images.githubusercontent.com/43991762/219814310-979a4701-25f0-42ea-853b-673f802726d1.png)
 
 
 Dodanie nowej usługi do cennika:
+![image](https://user-images.githubusercontent.com/43991762/219814358-053fbf7c-5b0f-40ca-a190-dcaf0e30a2f7.png)
+
 
 
 
 Rejestracja nowego pracownika:
+![image](https://user-images.githubusercontent.com/43991762/219814379-5dc97280-3824-42c5-8705-ae82d1faf067.png)
+
 
 
 
 Dodatkowo dla konta administratora, poza wszystkimi powyższymi opcjami dostępna jest dodatkowa zakładka, która umożliwia zarządzanie wszystkimi użytkownikami dostępnymi w bazie(tj. zmianę uprawnień, rodzaju konta):
+
+![image](https://user-images.githubusercontent.com/43991762/219814396-993bbd7a-f37d-4cf5-8c5e-03a987943ccb.png)
+
 
