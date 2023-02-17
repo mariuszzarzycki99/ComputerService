@@ -1,6 +1,7 @@
 # ComputerServiceOIRPOS
 
-Analiza
+# Analiza
+
 Aplikacja umożliwia rejestracje oraz logowanie poszczególnych użytkowników. Dostępne są następujące role:
 
 Niezalogowany
